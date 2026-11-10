@@ -1,3 +1,8 @@
+V26: Seamless hero shading + HNS gold WhatsApp consultation button.
+All other V25 features retained.
+
+V24: Fixed excessive empty space above fixed bottom dock by eliminating duplicated app-shell bottom padding and reducing content/footer padding. All V23 content and functions retained.
+
 V22 update: Social Links buttons are approximately 30% smaller and all have a unified dark-blue gradient. All links and other features preserved.
 
 HNS Digital Business Card — V21
@@ -52,4 +57,15 @@ Edit `config.js` for Sir's contact details and social links. All assets are bund
 Upload the contents to any static web hosting provider. The website works without a Node build process. When live, remember the previously discussed NFC BusinessBay URL / printed QR code considerations.
 
 ## Notes
-If automatic video playback is prevented by mobile or reduced-motion settings, an on-screen play control is available for the hero video. Confirm the "15 years" experience statement with Sir before publication.
+The hero background video attempts silent inline autoplay. Some mobile browsers and iOS Low Power Mode can still block autoplay; in that case the poster is shown without a Play Background button. Confirm the "15 years" experience statement with Sir before publication.
+
+
+## V23
+Reduced fixed bottom navigation height and gold appointment button approximately 20–25%, retained all click behavior, fixed positioning and accessible touch targets.
+
+## V25 phone polish
+- Removed the optional hero “Play background” overlay entirely.
+- Mobile-friendly H.264 silent video (`assets/hero-background-mobile-v25.mp4`) is used in the hero, with `autoplay muted loop playsinline` and a clean poster fallback.
+- An unobtrusive playback retry runs on the first tap if the browser permits it; autoplay cannot be forced on every iOS device setting.
+- Get a Free Consultation now shows a WhatsApp icon instead of the arrow. The link still opens the WhatsApp message to Sir.
+- All other sections, contact actions, booking form, About Me video, and fixed dock remain as in V24.

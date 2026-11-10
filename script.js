@@ -159,39 +159,36 @@
     if (!opened) window.location.href = waUrl;
     else { appointmentModal.close(); toast('WhatsApp inquiry prepared. Please send it to complete your request.'); }
   });
-  // Autoplay the decorative video inline on mobile, with a manual fallback if blocked.
+  // Decorative hero video: silent, inline playback with no on-screen control.
+  // Safari/iOS may block autoplay in Low Power Mode; keep the poster as a clean fallback.
   const heroVideo = $('hero-background-video');
-  const playVideoButton = $('hero-video-play');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (heroVideo) {
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     heroVideo.playsInline = true;
-    const syncPlayback = async () => {
+    heroVideo.setAttribute('muted', '');
+    heroVideo.setAttribute('playsinline', '');
+    const tryHeroPlay = () => {
       if (document.hidden || reduceMotion.matches) {
         heroVideo.pause();
-        if (playVideoButton) playVideoButton.hidden = !reduceMotion.matches;
         return;
       }
-      try {
-        await heroVideo.play();
-        if (playVideoButton) playVideoButton.hidden = true;
-      } catch (err) {
-        if (playVideoButton) playVideoButton.hidden = false;
-      }
+      if (!heroVideo.paused) return;
+      const attempt = heroVideo.play();
+      if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {
+        // No manual playback badge: the background poster remains visible.
+      });
     };
-    if (playVideoButton) playVideoButton.addEventListener('click', async () => {
-      try {
-        await heroVideo.play();
-        playVideoButton.hidden = true;
-      } catch (err) {
-        playVideoButton.textContent = 'Video unavailable';
-      }
-    });
-    heroVideo.addEventListener('canplay', syncPlayback, {once:true});
-    document.addEventListener('visibilitychange', syncPlayback);
-    if (typeof reduceMotion.addEventListener === 'function') reduceMotion.addEventListener('change', syncPlayback);
-    syncPlayback();
+    // A silent retry on the visitor's first tap can unlock playback where permitted.
+    const tryAfterInteraction = () => tryHeroPlay();
+    document.addEventListener('touchstart', tryAfterInteraction, { once: true, passive: true });
+    document.addEventListener('pointerdown', tryAfterInteraction, { once: true, passive: true });
+    heroVideo.addEventListener('canplay', tryHeroPlay, { once: true });
+    document.addEventListener('visibilitychange', tryHeroPlay);
+    window.addEventListener('pageshow', tryHeroPlay);
+    if (typeof reduceMotion.addEventListener === 'function') reduceMotion.addEventListener('change', tryHeroPlay);
+    tryHeroPlay();
   }
   // Reveal lower sections as the visitor scrolls through the mobile card.
   const sections = document.querySelectorAll('.lower-grid, .share-section, .gallery-section');

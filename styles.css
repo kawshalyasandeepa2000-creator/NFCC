@@ -148,8 +148,6 @@ body{background:#01040a}
 .hero-copy{z-index:5}
 .hero-experience-badge{z-index:6}
 /* A fallback button appears only if the browser prevents automatic playback. */
-.hero-video-play{position:absolute;z-index:8;right:12px;bottom:18px;border:1px solid #ffffff55;background:#071A40e6;color:#fff;border-radius:24px;padding:8px 12px;font-size:11px;font-weight:700;box-shadow:0 5px 14px #0007}
-.hero-video-play[hidden]{display:none!important}
 
 
 /* V9 — cinematic About Me treatment; always mobile width */
@@ -198,7 +196,6 @@ body{background:#01040a}
 .hero-headline{font-size:14px!important;line-height:1.5!important;max-width:330px!important;margin:0 0 10px!important;text-align:center!important}
 .hero-description{font-size:12px!important;line-height:1.65!important;max-width:315px!important;margin:0 0 20px!important;text-align:center!important}
 .hero-copy .consultation-cta{margin:0 auto!important;min-height:45px!important;padding:12px 19px!important;justify-content:center!important;font-size:12px!important}
-.hero-video-play{bottom:12px!important;right:12px!important}
 .hero-card:after{height:30px!important;z-index:0!important}
 @media(max-width:350px){.hero-visual{height:305px!important}.hero-visual .hero-experience-badge{width:87px!important;height:87px!important;left:9px!important;bottom:12px!important}.hero-visual .experience-number{font-size:30px!important}.hero-copy h1{font-size:34px!important}.hero-copy{padding:0 12px!important}}
 @media(prefers-reduced-motion:reduce){.hero-visual .hero-portrait,.hero-copy{animation:none!important}}
@@ -341,3 +338,43 @@ body{background:#01040a}
 }
 .social-bottom .social-icon-link img{width:21px!important;height:21px!important;}
 @media(max-width:350px){.social-bottom .social-icon-grid{gap:6px!important}.social-bottom .social-icon-link{width:40px!important;height:40px!important;max-width:40px!important;flex-basis:40px!important}.social-bottom .social-icon-link img{width:19px!important;height:19px!important}}
+
+/* V23 — compact fixed navigation: reduced visual bulk, still touch friendly */
+.fixed-action-bar{min-height:60px!important;padding:5px 12px calc(5px + env(safe-area-inset-bottom, 0px))!important;grid-template-columns:minmax(0,1fr) 70px minmax(0,1fr)!important;gap:4px!important;border-radius:15px 15px 0 0!important}
+.fixed-action-bar .dock-action{min-height:46px!important;padding:2px 3px!important;gap:3px!important;font-size:9px!important}
+.fixed-action-bar .dock-action img,.fixed-action-bar .dock-action svg{width:20px!important;height:20px!important}
+.fixed-action-bar .dock-qr{top:-14px!important;width:66px!important;height:66px!important;border-width:3px!important;gap:0!important}
+.fixed-action-bar .dock-appointment svg{width:20px!important;height:20px!important}
+.fixed-action-bar .dock-appointment span{font-size:7px!important;line-height:1.08!important}
+.content{padding-bottom:calc(94px + env(safe-area-inset-bottom, 0px))!important}
+@media(max-width:340px){.fixed-action-bar{grid-template-columns:minmax(0,1fr) 66px minmax(0,1fr)!important;padding-left:7px!important;padding-right:7px!important}.fixed-action-bar .dock-qr{width:62px!important;height:62px!important}}
+
+/* V24 — remove duplicated bottom spacing while keeping the dock fixed.
+   The dock is 60px high, so the 68px content clearance leaves ~8px
+   breathing room and prevents the footer from being obscured. */
+.app-shell{padding-bottom:0!important;}
+.content{padding-bottom:calc(68px + env(safe-area-inset-bottom, 0px))!important;}
+.site-footer{padding-top:18px!important;padding-bottom:8px!important;}
+@media(max-width:430px){.social-bottom{margin-bottom:10px!important;}}
+
+/* V25 — WhatsApp mark on the free-consultation CTA, no arrow glyph. */
+.hero-copy .consultation-cta .cta-whatsapp-icon{display:block;width:19px;height:19px;flex:0 0 19px;object-fit:contain;filter:drop-shadow(0 0 4px rgba(255,255,255,.16));}
+/* Keep the decorative video seamless when iOS limits autoplay. */
+.hero-video-layer video{background-color:#030b22;}
+
+/* V26 — unify the hero blue shading and remove the unwanted horizontal seam.
+   The video and photo retain their original layering. */
+.hero-card{background:#071a40!important;border-bottom:0!important;}
+.hero-stage{background:transparent!important;}
+.hero-copy{background:transparent!important;}
+.hero-card::after{display:none!important;content:none!important;}
+.hero-visual .hero-video-shade{background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(7,26,64,.05) 30%,rgba(7,26,64,.68) 69%,#071a40 100%)!important;}
+/* HNS logo-inspired gold CTA, preserving the WhatsApp link and icon. */
+.hero-copy .consultation-cta{
+ background:linear-gradient(115deg,#ffe87a 0%,#f3c623 45%,#d4af37 100%)!important;
+ border:1px solid #f4d55f!important;
+ color:#07132e!important;
+ box-shadow:0 7px 22px rgba(212,175,55,.24)!important;
+}
+.hero-copy .consultation-cta .cta-whatsapp-icon{filter:brightness(0) saturate(100%)!important;}
+.hero-copy .consultation-cta:hover,.hero-copy .consultation-cta:focus-visible{box-shadow:0 9px 27px rgba(243,198,35,.4)!important;}
