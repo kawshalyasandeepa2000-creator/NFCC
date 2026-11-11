@@ -535,3 +535,27 @@ body{background:#01040a}
 .hero-visual .experience-inner { position:relative!important; z-index:2!important; pointer-events:none!important; }
 @keyframes hns-v35-orbit {from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @-webkit-keyframes hns-v35-orbit {from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}
+
+
+/* V37 — replace hero subtitle block with single concise role line and move business-card download icon to the right. */
+.hero-headline-v37{
+  font-size:13px!important;
+  line-height:1.6!important;
+  max-width:332px!important;
+  margin:2px auto 20px!important;
+  text-align:center!important;
+  color:#f4f7ff!important;
+  font-weight:700!important;
+}
+.business-card-title-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+}
+.business-card-title-row h2{
+  flex:1 1 auto!important;
+}
+.business-card-pdf-icon{
+  margin-left:auto!important;
+}

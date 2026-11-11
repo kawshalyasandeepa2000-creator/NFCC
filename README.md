@@ -1,3 +1,11 @@
+V39: Fixed the hero subtitle being overwritten by the old config.js tagline. Updated config.js and asset version query strings.
+
+V38: Experience badge text updated from 15 to 15+. Same badge size and rotating-ring animation are retained.
+
+V37 updates:
+- Replaced hero subtitle and description with: Senior Business Setup & Corporate Structuring Advisor | UAE Market Specialist
+- Moved business card download icon to the right side of the heading.
+
 V36: Greeting order updated to Welcome / வரவேற்பு / സ്വാഗതം / स्वागत / ආයුබෝවන්. All V35 features retained.
 
 V35 — 15 Years badge spinning ring visibility fix. The orbit now renders in front of the badge background while text remains stable. Mobile hero spacing and every other feature remain unchanged.

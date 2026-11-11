@@ -6,7 +6,7 @@ window.HNS_CARD = {
   name: 'Anurajh Loganathan',
   role: '', // e.g. Managing Director — only add after confirming
   company: 'Helen & Sons Business Consultancy',
-  tagline: 'Your Partner for Business Setup in the UAE',
+  tagline: 'Senior Business Setup & Corporate Structuring Advisor | UAE Market Specialist',
   about: 'Welcome to my digital business card. Connect with me, save my details, and explore Helen & Sons Business Consultancy.',
   phone: '+971 50 633 5059', // verified contact number
   whatsapp: '971506335059', // WhatsApp international digits
