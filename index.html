@@ -7,9 +7,9 @@
   <meta name="description" content="Anurajh Loganathan | Helen & Sons Business Consultancy — Digital Business Card" />
   <title>Anurajh Loganathan | HNS Digital Card</title>
   <link rel="icon" type="image/png" href="assets/hns-logo-v17.png" />
-  <link rel="stylesheet" href="styles.css?v=26" />
+  <link rel="stylesheet" href="styles.css?v=35" />
   <script defer src="config.js"></script>
-  <script defer src="script.js?v=25"></script>
+  <script defer src="script.js?v=33"></script>
 </head>
 <body>
   <div class="ambient ambient-a" aria-hidden="true"></div><div class="ambient ambient-b" aria-hidden="true"></div>
@@ -33,12 +33,13 @@
       </header>
       <main id="home" class="content">
         <section class="hero-card" aria-labelledby="person-name">
+          <div class="hero-video-layer hero-video-full-v32" aria-hidden="true"><video id="hero-background-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/hero-mobile-poster-v32.jpg" disablepictureinpicture disableremoteplayback><source src="assets/hero-mobile-full-v32.mp4" type="video/mp4" /></video></div>
+          <div class="hero-video-shade hero-video-full-shade-v32" aria-hidden="true"></div>
           <div class="hero-halo" aria-hidden="true"></div>
-          <div class="hero-language">வரவேற்பு <span>/</span> സ്വാഗതം <span>/</span> स्वागत <span>/</span> ආයුබෝවන් <span>/</span> Welcome</div>
+          <div class="hero-language">Welcome <span>/</span> வரவேற்பு <span>/</span> സ്വാഗതം <span>/</span> स्वागत <span>/</span> ආයුබෝවන්</div>
           <div class="hero-stage">
             <div class="hero-visual">
-              <div class="hero-video-layer" aria-hidden="true"><video id="hero-background-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/video-poster.jpg" disablepictureinpicture disableremoteplayback><source src="assets/hero-background-mobile-v25.mp4" type="video/mp4" /></video></div>
-              <div class="hero-video-shade" aria-hidden="true"></div>
+
               <div class="hero-portrait"><img src="assets/anurajh-v16.png?v=16" alt="Portrait of Anurajh Loganathan" /></div>
               <div class="hero-experience-badge" role="img" aria-label="15 Years of Experience in Business Consultancy"><div class="experience-orbit" aria-hidden="true"></div><div class="experience-inner"><span class="experience-number">15</span><span class="experience-years">YEARS</span><span class="experience-caption">Business<br>Consultancy<br>Experience</span></div></div>
             </div>
@@ -67,7 +68,26 @@
               <p>I specialize in helping entrepreneurs, startups and international investors establish and structure their businesses across Mainland, Free Zone and Offshore jurisdictions.</p>
             </div>
           </article>
-          <article class="company-panel"><p class="eyebrow">PROUDLY REPRESENTING</p><div class="company-logo-box"><img src="assets/hns-logo-v17.png" alt="Helen & Sons Business Consultancy logo" /></div><p>Helen & Sons Business Consultancy</p><a id="company-link" class="small-link" href="#home" hidden>Explore company <span>↗</span></a><div class="company-decoration" aria-hidden="true">HNS</div></article>
+          <article class="business-card-showcase" id="business-card" aria-labelledby="business-card-title">
+            <div class="business-card-heading">
+              <p class="eyebrow">HELEN &amp; SONS · OFFICIAL BUSINESS CARD</p>
+              <div class="business-card-title-row">
+                <a class="business-card-pdf-icon" href="assets/Anurajh-Sir-Business-Card-Original.pdf" download="Anurajh-Sir-Business-Card.pdf" type="application/pdf" aria-label="Download Anurajh's original business card PDF" title="Download business card PDF">
+                  <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4"/><path d="M4 17v3h16v-3"/></svg>
+                </a>
+                <h2 id="business-card-title">My <span>Business Card</span></h2>
+              </div>
+              
+            </div>
+            <div class="business-card-flip" id="business-card-flip" aria-label="Auto rotating front and back of Anurajh Loganathan business card">
+              <span class="business-card-3d" aria-hidden="true">
+                <span class="business-card-face business-card-front"><img src="assets/business-card-front-v27.jpg" alt="Front of Anurajh Loganathan's Helen and Sons business card with his contact information and areas of expertise" loading="lazy" width="2048" height="1251"></span>
+                <span class="business-card-face business-card-back"><img src="assets/business-card-back-v27.jpg" alt="Back of Helen and Sons business card showing head office and branch locations" loading="lazy" width="2048" height="1251"></span>
+              </span>
+            </div>
+
+            <a id="company-link" hidden href="https://www.helensons.ae/">Explore company</a>
+          </article>
         </section>
         <section id="gallery" class="gallery-section" hidden><div class="section-heading"><div><p class="eyebrow">A CLOSER LOOK</p><h2>Our <em>Gallery.</em></h2></div></div><div id="gallery-grid" class="gallery-grid"></div></section>
         <section class="quick-links social-bottom" id="connect" aria-label="Social Links">

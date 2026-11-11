@@ -170,7 +170,7 @@
     heroVideo.setAttribute('muted', '');
     heroVideo.setAttribute('playsinline', '');
     const tryHeroPlay = () => {
-      if (document.hidden || reduceMotion.matches) {
+      if (document.hidden) {
         heroVideo.pause();
         return;
       }
@@ -184,7 +184,8 @@
     const tryAfterInteraction = () => tryHeroPlay();
     document.addEventListener('touchstart', tryAfterInteraction, { once: true, passive: true });
     document.addEventListener('pointerdown', tryAfterInteraction, { once: true, passive: true });
-    heroVideo.addEventListener('canplay', tryHeroPlay, { once: true });
+    heroVideo.addEventListener('canplay', tryHeroPlay);
+    heroVideo.addEventListener('loadedmetadata', tryHeroPlay);
     document.addEventListener('visibilitychange', tryHeroPlay);
     window.addEventListener('pageshow', tryHeroPlay);
     if (typeof reduceMotion.addEventListener === 'function') reduceMotion.addEventListener('change', tryHeroPlay);

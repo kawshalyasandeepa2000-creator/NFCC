@@ -378,3 +378,160 @@ body{background:#01040a}
 }
 .hero-copy .consultation-cta .cta-whatsapp-icon{filter:brightness(0) saturate(100%)!important;}
 .hero-copy .consultation-cta:hover,.hero-copy .consultation-cta:focus-visible{box-shadow:0 9px 27px rgba(243,198,35,.4)!important;}
+
+
+/* V27 — 3D rotating physical business card. Preserves 430px mobile-only shell. */
+.business-card-showcase{position:relative;min-width:0;width:100%;padding:21px 15px 17px;border:1px solid rgba(212,175,55,.32);border-radius:17px;background:linear-gradient(145deg,#0c2450 0%,#071a40 56%,#020b20 100%);box-shadow:0 18px 40px #0004;overflow:hidden;isolation:isolate}
+.business-card-showcase:before{content:"";position:absolute;inset:-60px -110px auto auto;width:220px;height:210px;border-radius:50%;background:#204fc2;opacity:.12;filter:blur(42px);pointer-events:none}
+.business-card-heading{position:relative;z-index:1}
+.business-card-heading .eyebrow{font-size:9px;letter-spacing:1.8px;color:#f3c623;margin:0 0 9px}
+.business-card-heading h2{font-family:Manrope,sans-serif;font-size:clamp(21px,5.6vw,27px);letter-spacing:-.7px;line-height:1.18;font-weight:800;color:#f4f7ff;margin:0 0 7px}
+.business-card-heading h2 span{color:#d4af37}
+.business-card-help{font-size:11px;color:#b9c6de;margin:0 0 19px;line-height:1.5}
+.business-card-flip{display:block;position:relative;width:100%;aspect-ratio:2048/1251;min-width:0;padding:0;margin:0;background:transparent;border:0;border-radius:12px;perspective:1300px;cursor:pointer;touch-action:manipulation;box-shadow:0 14px 33px rgba(0,0,0,.5)}
+.business-card-flip:focus-visible{outline:2px solid #f3c623;outline-offset:5px}
+.business-card-3d{position:absolute;inset:0;border-radius:12px;transform-style:preserve-3d;transition:transform 1.2s cubic-bezier(.22,.72,.16,1);will-change:transform}
+.business-card-flip.is-flipped .business-card-3d{transform:rotateY(180deg)}
+.business-card-face{position:absolute;inset:0;display:block;overflow:hidden;border-radius:11px;border:1px solid rgba(242,199,65,.55);backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#070b28}
+.business-card-face img{display:block;width:100%;height:100%;object-fit:cover;border-radius:10px}
+.business-card-back{transform:rotateY(180deg)}
+.business-card-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:17px}
+.business-card-side-label{font-size:11px;letter-spacing:.4px;color:#bfc8dc}
+.business-card-flip-cta{display:flex;gap:9px;align-items:center;justify-content:center;min-height:38px;padding:9px 16px;border-radius:999px;border:1px solid #d4af37;color:#f4d467;background:#142950;font-size:11px;font-weight:800;transition:background .2s,transform .2s}
+.business-card-flip-cta:active{transform:scale(.96)}
+.business-card-fullsize{display:flex;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.4);font-size:10px;margin-top:14px}
+.business-card-fullsize a{color:#bccce6;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:350px){.business-card-showcase{padding:17px 10px}.business-card-heading h2{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.business-card-3d{transition:none!important}}
+
+/* V28: accessible, full-width download action beneath the auto-rotating card. */
+.business-card-download{display:flex;gap:10px;align-items:center;justify-content:center;width:100%;margin:17px auto 4px;min-height:44px;padding:11px 12px;border-radius:12px;text-decoration:none;font-size:12px;line-height:1.3;font-weight:800;color:#061437;background:linear-gradient(125deg,#ffe16a,#f3c623 53%,#d4af37);box-shadow:0 5px 20px rgba(212,175,55,.17);transition:transform .18s,filter .18s}
+.business-card-download:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.business-card-download:active{transform:scale(.98)}
+@media (hover:hover){.business-card-download:hover{filter:brightness(1.07)}}
+
+/* V29: The flip surface is a direct PDF download link; no extra buttons. */
+.business-card-flip{display:block;text-decoration:none;-webkit-tap-highlight-color:transparent;}
+.business-card-flip:hover{filter:brightness(1.04)}
+.business-card-toolbar{margin-top:11px;justify-content:center;}
+.business-card-side-label{color:#bfc8dc;font-size:10px;}
+
+/* V31: Reliable auto-rotating two-sided card, independent of JS/scroll detection.
+   One complete side is visible for ~2 seconds, then the next. */
+.business-card-flip {
+  display:block;
+  position:relative;
+  perspective:1100px;
+  -webkit-perspective:1100px;
+  transform:translateZ(0);
+  -webkit-transform:translateZ(0);
+  overflow:visible;
+}
+.business-card-flip .business-card-3d {
+  display:block;
+  position:absolute;
+  inset:0;
+  transform-origin:center center;
+  transform-style:preserve-3d!important;
+  -webkit-transform-style:preserve-3d!important;
+  transition:none!important;
+  animation:hns-card-v31-flip 4s ease-in-out infinite!important;
+  -webkit-animation:hns-card-v31-flip 4s ease-in-out infinite!important;
+  animation-play-state:running!important;
+  -webkit-animation-play-state:running!important;
+  will-change:transform;
+}
+.business-card-flip .business-card-face {
+  display:block;
+  position:absolute;
+  inset:0;
+  -webkit-backface-visibility:hidden!important;
+  backface-visibility:hidden!important;
+  transform:rotateY(0deg) translateZ(1px);
+  -webkit-transform:rotateY(0deg) translateZ(1px);
+}
+.business-card-flip .business-card-back {
+  transform:rotateY(180deg) translateZ(1px);
+  -webkit-transform:rotateY(180deg) translateZ(1px);
+}
+@keyframes hns-card-v31-flip {
+  0%, 39%  {transform:rotateY(0deg)}
+  50%, 89% {transform:rotateY(180deg)}
+  100%     {transform:rotateY(360deg)}
+}
+@-webkit-keyframes hns-card-v31-flip {
+  0%, 39%  {-webkit-transform:rotateY(0deg)}
+  50%, 89% {-webkit-transform:rotateY(180deg)}
+  100%     {-webkit-transform:rotateY(360deg)}
+}
+/* No separate buttons or instructional copy; tapping the card downloads PDF. */
+.business-card-help,.business-card-toolbar,.business-card-download,.business-card-fullsize {display:none!important}
+
+/* V32 — video covers the ENTIRE mobile hero (portrait + title + CTA).
+   Video is a direct child of .hero-card, not restricted to .hero-visual. */
+.hero-card{position:relative!important;isolation:isolate!important;overflow:hidden!important;background:#071a40!important}
+.hero-card>.hero-video-full-v32{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+ z-index:0!important;display:block!important;overflow:hidden!important;pointer-events:none!important;
+ opacity:1!important;filter:none!important;
+ mask-image:none!important;-webkit-mask-image:none!important;
+ background:#071a40 url("assets/hero-mobile-poster-v32.jpg") center/cover no-repeat!important;
+}
+.hero-card>.hero-video-full-v32 video{
+ display:block!important;position:absolute!important;inset:0!important;
+ width:100%!important;height:100%!important;
+ object-fit:cover!important;object-position:center center!important;
+ transform:none!important;animation:none!important;
+ filter:brightness(1.12) saturate(1.35)!important;
+ background:transparent!important;
+}
+.hero-card>.hero-video-full-shade-v32{
+ position:absolute!important;inset:0!important;z-index:1!important;pointer-events:none!important;
+ background:linear-gradient(180deg,rgba(0,0,0,.22) 0%,rgba(2,11,31,.03) 30%,rgba(2,12,39,.08) 53%,rgba(7,26,64,.53) 76%,rgba(7,26,64,.74) 100%)!important;
+}
+.hero-card>.hero-halo{z-index:1!important;pointer-events:none!important}
+.hero-card>.hero-language{z-index:3!important}
+.hero-card>.hero-stage{position:relative!important;z-index:2!important;background:transparent!important;isolation:auto!important}
+.hero-card .hero-visual{background:transparent!important;isolation:auto!important}
+.hero-card .hero-copy{background:transparent!important;isolation:auto!important}
+.hero-card .hero-copy h1{text-shadow:0 2px 13px rgba(0,0,0,.48)!important}
+/* Keep mobile background filling the width even on narrow phones. */
+@media(max-width:430px){.hero-card>.hero-video-full-v32 video{object-fit:cover!important;object-position:center 45%!important}}
+
+/* V33: PDF only via the small gold icon BEFORE the heading; card itself does not download. */
+.business-card-title-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:0}
+.business-card-title-row h2{margin:0!important;min-width:0}
+.business-card-pdf-icon{flex:0 0 34px;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;color:#071a40;background:linear-gradient(145deg,#ffe271,#f3c623 55%,#d4af37);border:1px solid #ffdf67;border-radius:10px;text-decoration:none;box-shadow:0 3px 12px rgba(212,175,55,.18);touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.business-card-pdf-icon:focus-visible{outline:2px solid white;outline-offset:3px}
+.business-card-pdf-icon:active{transform:scale(.94)}
+.business-card-flip{cursor:default!important;touch-action:pan-y!important;}
+.business-card-flip:hover{filter:none!important}
+
+/* V34 — compact spacing from multilingual welcome greeting to hero portrait.
+   Only moves the portrait/hero stack up; keeps mobile video, portrait sizing,
+   experience badge and all lower sections unchanged. */
+.hero-card .hero-stage { margin-top: 10px !important; }
+@media (max-width: 350px) {
+  .hero-card .hero-stage { margin-top: 8px !important; }
+}
+
+
+/* V35 — fix experience orbit: older negative z-index hid the ring behind the badge. */
+.hero-visual .hero-experience-badge { isolation:isolate!important; overflow:visible!important; }
+.hero-visual .experience-orbit {
+  position:absolute!important; inset:-4px!important; border-radius:50%!important;
+  z-index:1!important; pointer-events:none!important;
+  background:conic-gradient(from 0deg, #1c3ce1 0deg, #81bbff 40deg, #265bff 65deg, #122b87 100deg, #132b72 210deg, #477bff 295deg, #a4d0ff 327deg, #1c3ce1 360deg)!important;
+  animation:hns-v35-orbit 2.5s linear infinite!important;
+  -webkit-animation:hns-v35-orbit 2.5s linear infinite!important;
+  transform-origin:center center!important;
+  will-change:transform;
+  box-shadow:0 0 12px #3376ff77,0 0 24px #3467ff44;
+}
+.hero-visual .experience-orbit::after{
+  content:''!important; position:absolute!important; inset:4px!important; border-radius:50%!important;
+  background:radial-gradient(circle at 42% 36%,#122e66,#02091e 78%)!important;
+}
+.hero-visual .experience-inner { position:relative!important; z-index:2!important; pointer-events:none!important; }
+@keyframes hns-v35-orbit {from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@-webkit-keyframes hns-v35-orbit {from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}
