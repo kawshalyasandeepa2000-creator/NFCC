@@ -1,3 +1,9 @@
+HNS Digital Business Card V40 — COMPLETE WEBSITE
+
+Update: About Me introduction text now appears ABOVE its video. All assets, videos, PDFs, JS, CSS, and configuration are included.
+
+Run: Open this folder in VS Code and launch index.html with Live Server.
+
 V39: Fixed the hero subtitle being overwritten by the old config.js tagline. Updated config.js and asset version query strings.
 
 V38: Experience badge text updated from 15 to 15+. Same badge size and rotating-ring animation are retained.
