@@ -1,0 +1,34 @@
+HNS DIGITAL BUSINESS CARD — V50 (AEserver cPanel UPDATE)
+
+CHANGES:
+  - REMOVED the line: “Save Sir's contact to your phone first, then explore his full digital business card.”
+  - KEPT “Anurajh Loganathan” and “UAE Business Setup Advisor”.
+  - KEPT “Click to Save Contact”; “View Full Profile” appears only after the contact link is clicked.
+  - Updated included Anurajh-Loganathan-HNS.vcf:
+    Contact name = Anurajh UAE Business Setup
+    Job title = UAE Business Setup Advisor
+  - Kept website photos, videos, PDF, dashboard, password recovery, logo and Sir portrait favicon.
+
+ONE-ZIP INSTALL (DO NOT DELETE EXISTING WEBSITE FILES FIRST):
+  1. In AEserver cPanel > Domains, check the Document Root for anurajh.helensons.ae.
+  2. Go to cPanel File Manager > that exact Document Root (folder containing index.html).
+  3. BACK UP the current website and download booking-config.js separately.
+  4. Upload HNS-Digital-Business-Card-V50-FULL-Clean-Contact-Screen-cPanel.zip to that folder.
+  5. Extract ZIP into that same folder. Replace existing website files if asked.
+  6. IMPORTANT: The ZIP intentionally EXCLUDES booking-config.js, so your existing
+     WORKING booking-config.js containing the Supabase publishable key is PRESERVED.
+     Do not rename booking-config.EXAMPLE.js to booking-config.js on this existing site.
+     Do not delete/overwrite the working booking-config.js.
+  7. Check the extracted index.html is directly in the Document Root, not in a nested folder.
+  8. Reload https://anurajh.helensons.ae/ using a PRIVATE/INCOGNITO tab.
+     On mobile, test via a new private tab or clear the website cache.
+  9. Check contact screen (no explanatory sentence); click contact link; confirm View Full Profile appears.
+  10. Check https://anurajh.helensons.ae/dashboard/ and run a controlled booking test.
+
+HOW TO VERIFY V50 IS LIVE:
+  Open View Page Source on https://anurajh.helensons.ae/ and search for:
+     hns-release ... V50-clean-contact-screen
+  If not found, cPanel is serving an older index.html or the browser/CDN has cached it.
+
+IMPORTANT: Supabase/Resend secret API keys must NEVER be placed in public website files.
+The example booking-config.EXAMPLE.js has only a placeholder publishable key.
