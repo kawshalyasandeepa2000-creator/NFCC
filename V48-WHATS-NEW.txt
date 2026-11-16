@@ -1,0 +1,1 @@
+HNS V48: Contact-first welcome screen title updated to UAE Business Setup Advisor and button label updated to Click to Save Contact. V47 flow and all other website features retained. Keep your working booking-config.js when deploying.
