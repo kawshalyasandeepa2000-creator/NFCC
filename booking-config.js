@@ -1,5 +1,5 @@
-/* HNS public browser configuration. NEVER add a service-role key or Resend API key here. */
+
 window.HNS_BOOKING = {
-  supabaseUrl: 'https://ibnxgknsytgerfktiqrx.supabase.co',
-  publishableKey: 'PASTE_YOUR_FULL_SB_PUBLISHABLE_KEY_HERE'
+  supabaseUrl: "https://ibnxgknsytgerfktiqrx.supabase.co",
+  publishableKey: "sb_publishable_qOI53__U9Nl3mpGsS5MirA_eKTUGW8W"
 };
