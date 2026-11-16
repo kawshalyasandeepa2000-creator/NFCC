@@ -1,0 +1,16 @@
+HNS V42 cPanel-ready website and dashboard
+
+1. In cPanel > Domains, find the EXACT Document Root for anurajh.helensons.ae.
+2. In cPanel File Manager, upload this ZIP to that Document Root and EXTRACT it there.
+   Important: index.html must be directly in the Document Root, not nested in another folder.
+3. IMPORTANT: Edit booking-config.js ON THE SERVER: replace PASTE_YOUR_FULL_SB_PUBLISHABLE_KEY_HERE with your own full sb_publishable_... key from Supabase Settings > API Keys.
+   The Supabase Project URL is already populated. NEVER place a Resend API key or any Supabase secret/service_role key in this file.
+4. Refresh https://anurajh.helensons.ae/dashboard/ with Ctrl+Shift+R.
+5. Staff login requires an existing Supabase Auth account with password and an hns_admin_users authorization row.
+6. Booking submission remains INCOMPLETE until the Supabase submit-booking Edge Function, server secrets, JWT configuration and anti-spam/rate-limiting are correctly configured. Do not advertise booking as live until tested.
+7. The previously deployed function and schema are NOT bundled in this public-web ZIP; do not upload server secrets or backend source under public_html.
+8. Back up your current website files before replacing anything. Confirm main site, images, videos, PDF and dashboard load afterwards.
+
+V43: HNS gold monogram browser favicon was added for website and dashboard (favicon.ico, favicon-16.png, favicon-32.png, apple-touch-icon.png). Browser tabs may cache old icons; hard refresh/clear cache.
+
+V44 favicon update: All favicon sizes and apple-touch icon replaced with the original Sir portrait supplied by the user. Both homepage and dashboard reference ?v=44 to refresh browser caches.

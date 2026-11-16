@@ -1,0 +1,9 @@
+HNS V47 — Contact first, profile next
+
+On first visit, View Full Profile is HIDDEN.
+After the visitor taps Open Contact to Save, the View Full Profile button appears.
+Phone contact saving still requires user confirmation. The browser cannot verify the save.
+Returning visitors on the same browser see the profile directly (localStorage).
+
+Upload: Back up the LIVE booking-config.js first, upload/extract this ZIP to the document root of anurajh.helensons.ae, then restore booking-config.js with your publishable key.
+No NFC URL rewrite required.

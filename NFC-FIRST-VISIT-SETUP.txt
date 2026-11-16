@@ -1,0 +1,16 @@
+HNS V46 — NFC First Visit Contact + Full Profile
+
+Upload and EXTRACT the contents of this ZIP directly in the document root of anurajh.helensons.ae.
+Do NOT remove dashboard/, assets/, or the other site files.
+Backup and RESTORE your LIVE booking-config.js after extraction: this ZIP deliberately does not contain your real Supabase publishable key.
+No Supabase server keys or Resend API keys should appear in browser files.
+
+NFC card URL stays: https://anurajh.helensons.ae/
+For fresh visitors, the homepage first shows a contact-introduction screen.
+Tap Open Contact to Save: a vCard downloads or previews (phone dependent). The phone itself requires Add Contact/Save confirmation.
+Return to the browser and tap View Full Profile. Future visits to the website from that browser go straight to the profile.
+Browsers cannot reliably know whether the contact was saved, so the profile button is manual and never claims the contact was saved.
+On some Android devices the vCard downloads to Downloads and must be opened in the Contacts app.
+On iOS Safari it may preview the contact or download it based on OS/browser settings.
+To test the first-visit screen again, use Private/Incognito browsing or clear site data.
+This feature does not change your admin dashboard or bookings.

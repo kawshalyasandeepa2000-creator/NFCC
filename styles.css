@@ -559,3 +559,32 @@ body{background:#01040a}
 .business-card-pdf-icon{
   margin-left:auto!important;
 }
+
+/* V41 booking submission feedback and consent */
+.booking-status{margin:10px 0;padding:12px;border-radius:10px;font-size:12px;line-height:1.5;border:1px solid rgba(255,128,128,.4);background:rgba(130,27,27,.23);color:#ffe5e5}
+.booking-status[data-kind="success"]{color:#baffd8;background:rgba(26,118,79,.25);border-color:rgba(44,211,137,.6)}
+.booking-status[data-kind="pending"]{color:#f4f7ff;background:rgba(26,68,130,.28);border-color:rgba(100,150,255,.4)}
+.booking-consent{display:flex!important;align-items:flex-start!important;gap:8px!important;font-size:11px!important;line-height:1.5!important;margin:10px 0!important;color:#dae4f8!important}
+.booking-consent input{width:17px!important;height:17px!important;flex:none;margin:0!important;accent-color:#d4af37}
+.booking-trap{position:absolute;left:-10000px;opacity:0;pointer-events:none}
+.appointment-submit:disabled{opacity:.6;cursor:wait}
+
+
+/* V46 / First-visit NFC contact introduction */
+.hns-contact-welcome[hidden], .hns-welcome-after[hidden] { display:none!important; }
+.hns-contact-welcome{position:fixed;inset:0;z-index:99999;background:#061432;overflow-y:auto;overscroll-behavior:contain;display:flex;align-items:center;justify-content:center;padding:20px 16px calc(20px + env(safe-area-inset-bottom));color:#f7f7fc;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+.hns-contact-welcome-card{width:min(100%,430px);margin:auto;text-align:center;padding:30px 20px 24px;border-radius:22px;background:linear-gradient(160deg,#112c5b,#091a3e 66%,#061433);border:1px solid rgba(221,180,54,.48);box-shadow:0 24px 85px rgba(0,0,0,.35);}
+.hns-welcome-kicker{font-size:11px;letter-spacing:.19em;color:#f0c94b;font-weight:700;margin-bottom:18px;}
+.hns-welcome-photo{width:116px;height:116px;object-fit:cover;border-radius:50%;border:3px solid #d9ac27;box-shadow:0 0 0 7px rgba(239,193,53,.11);margin:0 auto 20px;display:block;}
+.hns-contact-welcome h2{font-size:clamp(24px,6.6vw,31px);line-height:1.12;color:white;margin:0 0 10px;font-weight:750;letter-spacing:-.02em;}
+.hns-welcome-role{font-size:13px;line-height:1.5;color:#f1c854;max-width:270px;margin:0 auto 18px;}
+.hns-welcome-help{font-size:14px;line-height:1.65;color:#dee5f4;margin:0 auto 22px;max-width:295px;}
+.hns-welcome-main-button,.hns-welcome-profile-button{display:flex;align-items:center;justify-content:center;width:100%;min-height:54px;padding:13px 12px;border-radius:13px;font-family:inherit;font-weight:750;text-decoration:none;font-size:15px;cursor:pointer;box-sizing:border-box;}
+.hns-welcome-main-button{color:#091b3b!important;background:linear-gradient(110deg,#ffe991,#dfb325);box-shadow:0 7px 28px rgba(218,172,38,.2);}
+.hns-welcome-profile-button{margin-top:12px;color:#fff!important;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);}
+.hns-welcome-after{background:rgba(255,255,255,.07);text-align:left;padding:12px;border-radius:10px;font-size:13px;line-height:1.55;color:#fff;margin:14px 0 0;}
+.hns-welcome-note{font-size:11px;line-height:1.55;color:#b7c7dd;margin:17px auto 0;max-width:300px;}
+@media(prefers-reduced-motion:no-preference){.hns-contact-welcome-card{animation:hnsWelcomeIn .4s ease-out both;}@keyframes hnsWelcomeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}}
+
+/* V47: Show the profile action only after the contact file has been opened. */
+.hns-welcome-profile-button[hidden]{display:none!important;}

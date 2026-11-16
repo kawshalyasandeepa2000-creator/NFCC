@@ -70,7 +70,7 @@
     if(safe(c.address))lines.push(`ADR;TYPE=WORK:;;${clean(c.address)};;;;`);
     lines.push('END:VCARD');return lines.join('\r\n');
   };
-  $('save-contact')?.addEventListener('click',()=>{const blob=new Blob([vcard()],{type:'text/vcard;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Anurajh-Loganathan-HNS.vcf';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1500);toast('Contact file downloaded.');});
+  $('save-contact')?.addEventListener('click',()=>{const a=document.createElement('a');a.href='Anurajh-Loganathan-HNS.vcf';a.download='Anurajh-Loganathan-HNS.vcf';document.body.append(a);a.click();a.remove();toast('Open the contact file and tap Add Contact / Save.');});
   async function copyLink(){if(!shareUrl){toast('Publish your website first, or set publicUrl in config.js.');return;}try{await navigator.clipboard.writeText(shareUrl);toast('Website link copied!');}catch{window.prompt('Copy this link:',shareUrl);}}
   function share(){if(!shareUrl){toast('Publish your site to get its own share link.');return;} if(navigator.share){navigator.share({title:`${c.name} | HNS`,url:shareUrl}).catch(()=>{});}else {copyLink();}}
   $('share-card')?.addEventListener('click',share);$('copy-link')?.addEventListener('click',copyLink);// Dock contact-info dialog — all labels use the editable config values.
@@ -135,29 +135,58 @@
       bookingDate.setCustomValidity('');
     });
   }
-  appointmentForm?.addEventListener('submit', event => {
+  appointmentForm?.addEventListener('submit', async event => {
     event.preventDefault();
-    // Expand date controls before native constraint validation so missing fields are visible.
     setBookingExpanded(true);
-    if (!appointmentForm.reportValidity()) return;
-    const name = $('appointment-name').value.trim();
-    const email = $('appointment-email').value.trim();
-    const contact = $('appointment-phone').value.trim();
-    const service = $('appointment-service').value;
-    const date = bookingDate?.value || '';
-    const day = bookingDay?.value || '';
-    const time = bookingTime?.value || '';
-    if (date && day && dayNames[parseCalendarDay(date).getUTCDay()] !== day) {
+    const status = $('booking-status');
+    const submitButton = appointmentForm.querySelector('button[type="submit"]');
+    const showStatus = (message, kind='error') => {
+      if (status) { status.textContent = message; status.dataset.kind = kind; status.hidden = false; }
+    };
+    if(!appointmentForm.reportValidity()) return;
+    const payload = {
+      name: $('appointment-name').value.trim(),
+      email: $('appointment-email').value.trim(),
+      phone: $('appointment-phone').value.trim(),
+      service: $('appointment-service').value,
+      date: bookingDate?.value || '',
+      day: bookingDay?.value || '',
+      time: bookingTime?.value || '',
+      website: $('appointment-company-website')?.value || '',
+      consent: Boolean($('appointment-consent')?.checked)
+    };
+    if(payload.day !== dayNames[parseCalendarDay(payload.date).getUTCDay()]){
       bookingDate.setCustomValidity('Please select a date matching your preferred day.');
-      bookingDate.reportValidity();
+      bookingDate.reportValidity(); return;
+    }
+    const settings = window.HNS_BOOKING || {};
+    if(!settings.supabaseUrl || !settings.publishableKey){
+      showStatus('Booking system setup is not complete. Please contact us using the consultation WhatsApp button.');
       return;
     }
-    const mobile = safe(c.whatsapp).replace(/\D/g,'') || '971506335059';
-    const message = `Hello, I would like to request an appointment with Helen & Sons Business Consultancy.\n\nName: ${name}\nEmail: ${email}\nContact Number: ${contact}\nService: ${service}\nPreferred Date: ${date} (${day})\nPreferred Time: ${time} (UAE / GST, one-hour slot)\n\nPlease contact me to confirm availability. Thank you.`;
-    const waUrl = `https://wa.me/${mobile}?text=${encodeURIComponent(message)}`;
-    const opened = window.open(waUrl, '_blank', 'noopener,noreferrer');
-    if (!opened) window.location.href = waUrl;
-    else { appointmentModal.close(); toast('WhatsApp inquiry prepared. Please send it to complete your request.'); }
+    if(submitButton) submitButton.disabled=true;
+    showStatus('Submitting your request…','pending');
+    try {
+      const root = settings.supabaseUrl.replace(/\/$/, '');
+      const controller = new AbortController();
+      const timeout = setTimeout(()=>controller.abort(),15000);
+      let response;
+      try {
+        response = await fetch(`${root}/functions/v1/submit-booking`,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','apikey':settings.publishableKey},
+          body:JSON.stringify(payload), signal:controller.signal
+        });
+      } finally { clearTimeout(timeout); }
+      const result = await response.json().catch(()=>({}));
+      if(!response.ok || !result.ok) throw new Error(result.error || 'Unable to submit the request. Please try again.');
+      showStatus('Your request was received! Our team will contact you to confirm the appointment.','success');
+      appointmentForm.reset();
+      setBookingExpanded(false);
+      setTimeout(()=>{ if(appointmentModal?.open) appointmentModal.close(); },2200);
+    } catch (err) {
+      showStatus(err.name==='AbortError'?'The request timed out. Please retry or contact us on WhatsApp.':(err.message||'An error occurred. Please try again.'));
+    } finally { if(submitButton) submitButton.disabled=false; }
   });
   // Decorative hero video: silent, inline playback with no on-screen control.
   // Safari/iOS may block autoplay in Low Power Mode; keep the poster as a clean fallback.
