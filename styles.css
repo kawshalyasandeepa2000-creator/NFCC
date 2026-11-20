@@ -588,3 +588,8 @@ body{background:#01040a}
 
 /* V47: Show the profile action only after the contact file has been opened. */
 .hns-welcome-profile-button[hidden]{display:none!important;}
+
+/* V52: Show no-download Phone-app alternative after opening Google Contacts. */
+.hns-android-vcf-fallback[hidden]{display:none!important}
+.hns-android-vcf-fallback{display:block;max-width:100%;margin:12px auto 0;color:#cfdbf2;text-decoration:underline;text-underline-offset:3px;font-size:12px;text-align:center;line-height:1.5}
+.hns-android-vcf-fallback:focus-visible{outline:2px solid #f0c94b;outline-offset:5px}

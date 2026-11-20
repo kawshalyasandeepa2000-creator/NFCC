@@ -1,0 +1,29 @@
+HNS V52 — Android no-download contact-saving option
+
+WHAT CHANGED
+- Android: Main 'Click to Save Contact' action opens a pre-filled Google Contacts
+  create-contact screen in a new tab. This avoids the VCF download prompt.
+  Google sign-in may be required. The visitor confirms Save.
+- Android alternative: Open the Phone app with Sir's telephone number;
+  from there, the user can select Add / Create Contact. This also avoids
+  file downloads but may require additional user actions.
+- iPhone: Original .vcf contact preview remains unchanged.
+- After pressing the first button, 'View Full Profile' becomes visible.
+- The website cannot verify whether the contact was saved.
+- Android OS/browser restrictions prevent a website from guaranteeing
+  automatic opening of the native Contacts editor on every handset.
+- All existing website, appointment dashboard, video, images retained.
+
+AEserver cPanel
+1. Back up the current document root and the working booking-config.js.
+2. Extract the FULL ZIP directly inside the anurajh.helensons.ae document root.
+3. Keep/restore the working booking-config.js. This ZIP intentionally excludes
+   it because your Supabase publishable key is configured on your server.
+4. Test the website via Android Chrome / Samsung Internet and iPhone Safari.
+5. Confirm booking form and /dashboard/ still work.
+
+GitHub
+- Repo: kawshalyasandeepa2000-creator/NFCC
+- Hosting on AEserver is separate: pushing changes to GitHub does NOT
+  automatically update AEserver cPanel.
+- Do not add Resend or Supabase secret keys to a public GitHub repository.
